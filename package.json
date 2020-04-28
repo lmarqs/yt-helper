@@ -11,9 +11,7 @@
     "deploy-node-app": "^1.4.3",
     "dotenv": "^8.0.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
-    "typescript": "^3.8.3"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "babel-eslint": "10.0.1",
@@ -28,14 +26,19 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.19.1",
-    "prettier": "^1.17.1"
+    "prettier": "^1.17.1",
+    "react-app-rewire-workbox": "^2.0.1",
+    "react-app-rewired": "^2.1.5",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.4.5",
+    "workbox-webpack-plugin": "^3.0.0"
   },
   "scripts": {
     "start": "bash bin/dev.sh",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "deploy": "deploy-node-app",
-    "test": "react-scripts test",
-    "eject-www": "react-scripts eject",
+    "test": "react-app-rewired test",
+    "eject-www": "react-app-rewired eject",
     "psql": "export $(cat .env | xargs) && PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${POSTGRES_SERVICE_HOST} -p ${POSTGRES_SERVICE_PORT} -U ${POSTGRES_USER} ${POSTGRES_DB}"
   },
   "eslintConfig": {
