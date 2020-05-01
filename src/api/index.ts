@@ -1,6 +1,13 @@
-const express = require('express')
-require('dotenv').config()
-const postgres = require('@metamodules/postgres')()
+/* eslint-disable import/first */
+/// <reference path="index.d.ts" />
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import Postgres from '@metamodules/postgres';
+
+const postgres = Postgres();
 
 const app = express()
 const port = 4000
