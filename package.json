@@ -5,6 +5,7 @@
   "dependencies": {
     "@metamodules/postgres": "^1.2.1",
     "dotenv": "^8.0.0",
+    "http-status-codes": "^1.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -19,6 +20,7 @@
     "concurrently": "^4.1.0",
     "cross-spawn": "^6.0.5",
     "deploy-node-app": "^1.4.3",
+    "eslint-plugin-jest": "^23.8.2",
     "nodemon": "^1.19.1",
     "prettier": "^1.17.1",
     "react-app-rewire-workbox": "^2.0.1",
@@ -30,14 +32,14 @@
   },
   "scripts": {
     "start": "bash bin/dev.sh",
-    "build": "react-app-rewired build",
-    "deploy": "deploy-node-app",
+    "build": "yarn build:api && yarn build:www",
+    "build:api": "tsc --project src/api/tsconfig.json --outDir build",
+    "build:www": "react-app-rewired build",
+    "deploy": "deploy-node-app local --format compose",
+    "lint": "eslint . --ext tsx,ts,js",
     "test": "react-app-rewired test",
     "eject-www": "react-app-rewired eject",
     "psql": "export $(cat .env | xargs) && PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${POSTGRES_SERVICE_HOST} -p ${POSTGRES_SERVICE_PORT} -U ${POSTGRES_USER} ${POSTGRES_DB}"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
@@ -45,21 +47,23 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "proxy": "http://localhost:4000",
   "deploy-node-app": {
-    "prod": {
-      "port": 4000,
-      "protocol": "http",
-      "entrypoint": "src/api/index.js",
-      "type": "spa"
-    },
     "dev": {
+      "registry": "",
+      "type": "combo",
       "port": 4000,
       "protocol": "http",
-      "entrypoint": "src/api/index.js",
+      "entrypoint": "src/api/index.ts",
+      "isPublic": true
+    },
+    "prod": {
       "registry": "",
-      "type": "spa",
-      "isPublic": false
+      "type": "combo",
+      "port": 4000,
+      "protocol": "http",
+      "entrypoint": "build/index.js",
+      "isPublic": true
     }
-  },
-  "proxy": "http://localhost:4000"
+  }
 }
