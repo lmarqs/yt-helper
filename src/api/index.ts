@@ -32,5 +32,9 @@ app.get("/api/video/:id/download", (req, res) => {
   }).pipe(res);
 });
 
+app.use((err, req, res, next) => {
+  res.status(500).send(err.toString());
+});
+
 // eslint-disable-next-line no-process-env
 app.listen(process.env.PORT || 8080);
