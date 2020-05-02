@@ -11,7 +11,7 @@ app.get("/api/video/:id/info", async (req, res) => {
   res.json(info);
 });
 
-app.get("/api/video/:id/download", async (req, res) => {
+app.get("/api/video/:id/download", (req, res) => {
   const { id } = req.params;
   const { name } = req.query;
 
@@ -32,4 +32,5 @@ app.get("/api/video/:id/download", async (req, res) => {
   }).pipe(res);
 });
 
-app.listen(5000);
+// eslint-disable-next-line no-process-env
+app.listen(process.env.PORT || 8080);
