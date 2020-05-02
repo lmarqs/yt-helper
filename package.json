@@ -42,7 +42,7 @@
     "build": "yarn build:api && yarn build:www",
     "build:api": "tsc --project src/api/tsconfig.json --outDir build",
     "build:www": "react-app-rewired build",
-    "deploy": "deploy-node-app local --format compose",
+    "deploy": "git push heroku master",
     "lint": "eslint . --ext tsx,ts,js",
     "test": "react-app-rewired test",
     "eject-www": "react-app-rewired eject",
