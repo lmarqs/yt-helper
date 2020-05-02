@@ -36,6 +36,7 @@
     "workbox-webpack-plugin": "^3.0.0"
   },
   "scripts": {
+    "prestart": "yarn build",
     "start": "node build",
     "start:dev": "bash bin/dev.sh",
     "build": "yarn build:api && yarn build:www",
