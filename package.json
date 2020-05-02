@@ -40,7 +40,7 @@
     "start": "node build",
     "start:dev": "bash bin/dev.sh",
     "build": "yarn build:api && yarn build:www",
-    "build:api": "tsc --project src/api/tsconfig.json --outDir build",
+    "build:api": "node_modules/.bin/tsc --project src/api/tsconfig.json --outDir build",
     "build:www": "react-app-rewired build",
     "deploy": "git push heroku master",
     "lint": "eslint . --ext tsx,ts,js",
