@@ -11,7 +11,7 @@ export const App: React.FunctionComponent = () => {
   const onSubmit = useOnSubmitCallback(async (values) => {
     const video = await fetchVideo(values.url);
 
-    setVideos([video, ...videos.filter(v => v.video_id !== video.video_id)]);
+    setVideos([video, ...videos.filter(v => v.video_id !== video.video_id)].slice(0, 10));
   });
 
   return (
