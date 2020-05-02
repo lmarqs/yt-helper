@@ -43,7 +43,7 @@ const Actions: FunctionComponent<{ video: Video }> = ({ video }) => {
   }, []);
 
   return (
-    <div onBlur={onBlur} onFocus={onFocus}>
+    <div className="dropdown dropleft" onBlur={onBlur} onFocus={onFocus}>
       <button
         aria-expanded={isFocused}
         aria-haspopup="true"
