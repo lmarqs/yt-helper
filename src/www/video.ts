@@ -3,8 +3,8 @@ import React from "react";
 
 export type Video = ytdl.videoInfo;
 
-export async function fetchVideo(id: string): Promise<Video> {
-  const response = await fetch(`/api/video/${id}/info`);
+export async function fetchVideo(video: string): Promise<Video> {
+  const response = await fetch(`/api/video/${encodeURIComponent(video)}/info`);
   return response.json();
 }
 

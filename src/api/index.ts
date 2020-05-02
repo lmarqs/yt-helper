@@ -6,13 +6,17 @@ const app = express();
 
 app.use(express.static(`${__dirname}/public`));
 
-app.get("/api/video/:id/info", async (req, res) => {
-  const info = await ytdl.getInfo(`http://www.youtube.com/watch?v=${req.params.id}`);
-  res.json(info);
+app.get("/api/video/:url/info", async (req, res, next) => {
+  try {
+    const info = await ytdl.getInfo(decodeURIComponent(req.params.url));
+    return res.json(info);
+  } catch (err) {
+    return next(err);
+  }
 });
 
-app.get("/api/video/:id/download", (req, res) => {
-  const { id } = req.params;
+app.get("/api/video/:url/download", (req, res) => {
+  const { url } = req.params;
   const { name } = req.query;
 
   const ext = "mp4";
@@ -24,9 +28,12 @@ app.get("/api/video/:id/download", (req, res) => {
   }
 
   res.setHeader("Content-Type", contentType);
-  res.setHeader("Content-Disposition", `attachment; filename="${encodeURIComponent(name?.toString() ?? "video")}.${ext}"`);
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename="${encodeURIComponent(name?.toString() ?? "video")}.${ext}"`,
+  );
 
-  ytdl(`http://www.youtube.com/watch?v=${id}`, {
+  ytdl(decodeURIComponent(url), {
     quality: "highestaudio",
     filter: (format) => format.container === "mp4",
   }).pipe(res);

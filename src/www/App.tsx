@@ -9,15 +9,7 @@ export const App: React.FunctionComponent = () => {
   const [videos, setVideos] = useVideos();
 
   const onSubmit = useOnSubmitCallback(async (values) => {
-    const url = new URL(values.url);
-    const id = url.searchParams.get("v");
-
-    if (!id) {
-      alert('invalid URL');
-      return;
-    }
-
-    const video = await fetchVideo(id);
+    const video = await fetchVideo(values.url);
 
     setVideos([video, ...videos.filter(v => v.video_id !== video.video_id)]);
   });

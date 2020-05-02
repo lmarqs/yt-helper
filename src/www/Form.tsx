@@ -28,7 +28,7 @@ export class Form extends Component<Props, State> {
     try {
       await onSubmit(...args);
     } catch (e) {
-      alert(Object.prototype.toString.call(e));
+      alert(e?.message ?? "Erro");
     } finally {
       this.setState({ isSubmitting: false });
     }
@@ -50,22 +50,22 @@ const InnerForm: FunctionComponent<InnerFormProps> = ({ onSubmit, isSubmitting }
   const { register, handleSubmit } = useForm<FieldValues>();
 
   return (
-    <form 
+    <form
       autoComplete="off"
       className="form-inline my-2 my-lg-0"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <input 
-        aria-label="Video"
+      <input
+        aria-label="Video URL"
         className="col-12 col-md-8 form-control mr-md-2"
         name="url"
-        placeholder="Video"
+        placeholder="Video URL"
         readOnly={isSubmitting}
         ref={register}
         required
         type="url"
       />
-      <button 
+      <button
         className="btn btn-outline-success my-2"
         disabled={isSubmitting}
         type="submit"
