@@ -59,8 +59,21 @@ const Actions: FunctionComponent<{ video: Video }> = ({ video }) => {
         <a className="dropdown-item" href={video.video_url} rel="noopener noreferrer" target="_blank">
           Assistir
         </a>
-        <a className="dropdown-item" href={`/api/video/${encodeURIComponent(video.video_url)}/download?name=${encodeURIComponent(video.title)}`} rel="noopener noreferrer" target="_blank">
-          Baixar
+        <a 
+          className="dropdown-item"
+          href={`/api/video/${encodeURIComponent(video.video_url)}/download?name=${encodeURIComponent(video.title)}&ext=mp4`}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Baixar Video
+        </a>
+        <a 
+          className="dropdown-item"
+          href={`/api/video/${encodeURIComponent(video.video_url)}/download?name=${encodeURIComponent(video.title)}&ext=mp3`}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Baixar Audio
         </a>
       </div>
     </div>
