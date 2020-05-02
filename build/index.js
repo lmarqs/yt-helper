@@ -44,21 +44,26 @@ var mime_types_1 = __importDefault(require("mime-types"));
 var ytdl_core_1 = __importDefault(require("ytdl-core"));
 var app = express_1.default();
 app.use(express_1.default.static(__dirname + "/public"));
-app.get("/api/video/:id/info", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var info;
+app.get("/api/video/:url/info", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var info, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, ytdl_core_1.default.getInfo("http://www.youtube.com/watch?v=" + req.params.id)];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, ytdl_core_1.default.getInfo(decodeURIComponent(req.params.url))];
             case 1:
                 info = _a.sent();
-                res.json(info);
-                return [2 /*return*/];
+                return [2 /*return*/, res.json(info)];
+            case 2:
+                err_1 = _a.sent();
+                return [2 /*return*/, next(err_1)];
+            case 3: return [2 /*return*/];
         }
     });
 }); });
-app.get("/api/video/:id/download", function (req, res) {
+app.get("/api/video/:url/download", function (req, res) {
     var _a;
-    var id = req.params.id;
+    var url = req.params.url;
     var name = req.query.name;
     var ext = "mp4";
     var contentType = mime_types_1.default.lookup("." + ext);
@@ -67,10 +72,13 @@ app.get("/api/video/:id/download", function (req, res) {
     }
     res.setHeader("Content-Type", contentType);
     res.setHeader("Content-Disposition", "attachment; filename=\"" + encodeURIComponent((_a = name === null || name === void 0 ? void 0 : name.toString()) !== null && _a !== void 0 ? _a : "video") + "." + ext + "\"");
-    ytdl_core_1.default("http://www.youtube.com/watch?v=" + id, {
+    ytdl_core_1.default(decodeURIComponent(url), {
         quality: "highestaudio",
         filter: function (format) { return format.container === "mp4"; },
     }).pipe(res);
+});
+app.use(function (err, req, res, next) {
+    res.status(500).send(err.toString());
 });
 // eslint-disable-next-line no-process-env
 app.listen(process.env.PORT || 8080);
