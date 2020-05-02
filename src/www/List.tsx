@@ -7,7 +7,7 @@ interface Props {
 
 export const List: FunctionComponent<Props> = ({ videos }) => {
   return (
-    <ul className="list-group list-group-flush">
+    <ul className="list-group">
       {videos.map(video => (
         <ListItem key={video.video_id} video={video} />
       ))}
@@ -17,12 +17,14 @@ export const List: FunctionComponent<Props> = ({ videos }) => {
 
 const ListItem: FunctionComponent<{ video: Video }> = ({ video }) => {
   return (
-    <li className="row px-2">
-      <div className="col-10">
-        {video.title}
-      </div>
-      <div className="col-2">
-        <Actions video={video} />
+    <li className="list-group-item">
+      <div className="row">
+        <div className="col-10">
+          {video.title}
+        </div>
+        <div className="col-2">
+          <Actions video={video} />
+        </div>
       </div>
     </li>
   );
@@ -49,18 +51,16 @@ const Actions: FunctionComponent<{ video: Video }> = ({ video }) => {
         data-toggle="dropdown"
         type="button"
       >
-        <i className="mdi mdi-dots-horizontal font-weight-bold" />
+        <span className="material-icons">
+          more_horiz
+        </span>
       </button>
       <div className={`dropdown-menu${isFocused ? ' show' : ''}`}>
         <a className="dropdown-item" href={video.video_url} rel="noopener noreferrer" target="_blank">
           Assistir
-          {' '}
-          <i className="mdi mdi-youtube-play" />
         </a>
         <a className="dropdown-item" href={`/api/video/${video.video_id}/download?name=${encodeURIComponent(video.title)}`} rel="noopener noreferrer" target="_blank">
           Baixar
-          {' '}
-          <i className="mdi mdi-youtube-play" />
         </a>
       </div>
     </div>
