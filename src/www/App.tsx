@@ -1,61 +1,33 @@
-import React, { Component } from 'react'
-import logos from './logos.svg'
-import './App.css'
 
-class App extends Component {
-  state = {
-    count: 'loading...'
-  }
+import React from "react";
+import { useVideos, fetchVideo } from "./video";
+import { Form, useOnSubmitCallback } from "./Form";
+import { Navbar } from "./Navbar";
+import { List } from "./List";
 
-  componentDidMount = async () => {
-    const { count } = await window.fetch(`/api/count`).then(res => res.json())
-    this.setState({ count })
-  }
+export const App: React.FunctionComponent = () => {
+  const [videos, setVideos] = useVideos();
 
-  increment = async () => {
-    const { count } = await window
-      .fetch(`/api/count/increment`, { method: 'POST' })
-      .then(res => res.json())
-    this.setState({ count })
-  }
+  const onSubmit = useOnSubmitCallback(async (values) => {
+    const url = new URL(values.url);
+    const id = url.searchParams.get("v");
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logos} className="App-logo" alt="logo" />
-          <p>
-            {'Learn '}
-            <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-              React
-            </a>
-            {', '}
-            <a href="https://expressjs.com" target="_blank" rel="noopener noreferrer">
-              Express
-            </a>
-            {', and '}
-            <a href="https://kubernetes.io" target="_blank" rel="noopener noreferrer">
-              Kubernetes
-            </a>
-          </p>
-          <p>
-            Modify <code>src/www/App.js</code> or <code>src/api/index.js</code> to reload UI or API.
-          </p>
-          <p>
-            <code>yarn deploy</code> to build containers and deploy them to production
-          </p>
-          <hr />
-          <h2>Count: {this.state.count}</h2>
-          <p>
-            Call <code>/api/count/increment</code>
-            <button onClick={this.increment} className="App-button">
-              Go
-            </button>
-          </p>
-        </header>
-      </div>
-    )
-  }
+    if (!id) {
+      alert('invalid URL');
+      return;
+    }
+
+    const video = await fetchVideo(id);
+
+    setVideos([video, ...videos.filter(v => v.video_id !== video.video_id)]);
+  });
+
+  return (
+    <div className="container px-0">
+      <Navbar>
+        <Form onSubmit={onSubmit} />
+      </Navbar>
+      <List videos={videos} />
+    </div>
+  )
 }
-
-export default App

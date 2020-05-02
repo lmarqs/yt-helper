@@ -1,41 +1,35 @@
-/* eslint-disable import/first */
-
-require("dotenv").config();
-
-import HttpStatus from "http-status-codes";
-import Postgres from "@metamodules/postgres";
 import express from "express";
-
-const postgres = new Postgres();
+import mime from "mime-types";
+import ytdl from "ytdl-core";
 
 const app = express();
-const port = 4000;
 
 app.use(express.static(`${__dirname}/public`));
 
-postgres.query(`CREATE TABLE IF NOT EXISTS clicks (
-  id BIGSERIAL PRIMARY KEY,
-  created_at TIMESTAMP DEFAULT NOW()
-)`);
-
-app.get("/api/count", (req, res) => {
-  postgres.query("SELECT count(*) AS count FROM clicks", (err, resp) => {
-    if (err) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
-      return;
-    }
-
-    res.send({ count: resp.rows[0].count || 0 });
-  });
+app.get("/api/video/:id/info", async (req, res) => {
+  const info = await ytdl.getInfo(`http://www.youtube.com/watch?v=${req.params.id}`);
+  res.json(info);
 });
 
-app.post("/api/count/increment", (req, res) => {
-  postgres.query("INSERT INTO clicks DEFAULT VALUES", (insertErr, insert) => {
-    postgres.query("SELECT count(*) AS count FROM clicks", (selectErr, resp) => {
-      res.send({ count: resp.rows[0].count || 0 });
-    });
-  });
+app.get("/api/video/:id/download", async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.query;
+
+  const ext = "mp4";
+
+  const contentType = mime.lookup(`.${ext}`);
+
+  if (!contentType) {
+    throw new Error();
+  }
+
+  res.setHeader("Content-Type", contentType);
+  res.setHeader("Content-Disposition", `attachment; filename="${encodeURIComponent(name?.toString() ?? "video")}.${ext}"`);
+
+  ytdl(`http://www.youtube.com/watch?v=${id}`, {
+    quality: "highestaudio",
+    filter: (format) => format.container === "mp4",
+  }).pipe(res);
 });
 
-// eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Example backend API listening on port ${port}!`));
+app.listen(4000);

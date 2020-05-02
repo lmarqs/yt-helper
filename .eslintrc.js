@@ -16,6 +16,7 @@ module.exports = {
     "array-element-newline": ["error", "consistent"],
     "capitalized-comments": "off",
     "comma-dangle": ["error", "always-multiline"],
+    "dot-location": ["error", "property"],
     "eol-last": ["error", "always"],
     "func-style": ["error", "declaration", { allowArrowFunctions: true }],
     "function-call-argument-newline": ["error", "consistent"],
