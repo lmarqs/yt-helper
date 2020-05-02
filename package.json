@@ -42,7 +42,6 @@
     "build:all": "yarn build:api && yarn build:www",
     "build:api": "tsc --project src/api/tsconfig.json --outDir build",
     "build:www": "react-app-rewired build",
-    "predeploy": "yarn build:all",
     "deploy": "git push heroku master -f",
     "lint": "eslint . --ext tsx,ts,js",
     "test": "react-app-rewired test",
