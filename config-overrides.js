@@ -2,7 +2,7 @@ const { rewireWorkboxGenerate, defaultGenerateConfig } = require("react-app-rewi
 const path = require("path");
 
 module.exports = {
-  webpack (config, env) {
+  webpack(config, env) {
     if (env === "production") {
       const workboxConfig = {
         ...defaultGenerateConfig,
@@ -11,17 +11,17 @@ module.exports = {
     }
     return config;
   },
-  paths (config) {
+  paths(config) {
     return {
       ...config,
       appSrc: resolve("src", "www"),
       appIndexJs: resolve("src", "www", "index.tsx"),
       appTsConfig: resolve("src", "www", "tsconfig.json"),
-      appBuild: resolve("build", "public"),
+      appBuild: resolve("build", "web", "public"),
     };
   },
 };
 
-function resolve (...relativePath) {
+function resolve(...relativePath) {
   return path.resolve(process.cwd(), ...relativePath);
 }

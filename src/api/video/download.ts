@@ -22,7 +22,6 @@ function downloadVideo(url: string): stream.Readable {
   });
 }
 
-
 function mp4ToMp3Conversor(): stream.Duplex {
   const input = new stream.PassThrough();
   const output = new stream.PassThrough();
@@ -35,7 +34,6 @@ function mp4ToMp3Conversor(): stream.Duplex {
 
       this.on("pipe", (source: stream.Readable) => {
         source.unpipe(this);
-        // this.source = source.pipe(input);
       });
 
       this.pipe = (...args) => output.pipe(...args);

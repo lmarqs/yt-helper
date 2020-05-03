@@ -26,6 +26,8 @@ module.exports = {
     "max-params": ["error", 4],
     "multiline-comment-style": "off",
     "multiline-ternary": ["error", "always-multiline"],
+    "no-await-in-loop": "off",
+    "no-continue": "off",
     "no-magic-numbers": "off",
     "no-multiple-empty-lines": ["error", { max: 2, maxEOF: 1, maxBOF: 0 }],
     "no-ternary": "off",
