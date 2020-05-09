@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import ffmpegStatic from "ffmpeg-static";
-import fluentFfmpeg from "fluent-ffmpeg";
+import ffmpeg from "fluent-ffmpeg";
 import fs from "fs";
 import path from "path";
 import stream from "stream";
@@ -79,9 +79,12 @@ function mp4ToMp3Conversor(): stream.Duplex {
     source.pipe(input);
   });
 
-  fluentFfmpeg()
+  ffmpeg()
     .setFfmpegPath(ffmpegStatic)
     .input(input)
+    .audioCodec('libmp3lame')
+    .audioBitrate(192)
+    .audioChannels(2)
     .format("mp3")
     .output(output)
     .run();
