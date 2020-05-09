@@ -94,6 +94,7 @@ var ytdl_core_1 = __importDefault(require("ytdl-core"));
 var ytpl_1 = __importDefault(require("ytpl"));
 function sync(_a) {
     var format = _a.format, _b = __read(_a.args, 1), url = _b[0];
+    console.log(format);
     return __awaiter(this, void 0, void 0, function () {
         var videos, files, _loop_1, _c, _d, _e, index, video, e_1_1;
         var e_1, _f;

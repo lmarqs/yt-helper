@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import ffmpegStatic from "ffmpeg-static";
 import ffmpeg from "fluent-ffmpeg";
+import ffmpegStatic from "ffmpeg-static";
 import fs from "fs";
 import path from "path";
+import sanitizeFilename from "sanitize-filename";
 import stream from "stream";
 import util from "util";
 import ytdl from "ytdl-core";
@@ -20,7 +21,7 @@ export async function sync({ format, args: [url] }: Args): Promise<void> {
   const files = await readDir();
 
   for (const [index, video] of videos.entries()) {
-    const filename = `${(index + 1).toString().padStart(3, "0")} - ${video.title}`.replace(/([^a-z0-9 ]+)/gi, '');
+    const filename = sanitizeFilename(`${(index + 1).toString().padStart(3, "0")} - ${video.title}`);
 
     if (files.includes(filename)) {
       files.splice(files.indexOf(filename), 1);

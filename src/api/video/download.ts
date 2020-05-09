@@ -1,7 +1,8 @@
 import express from "express";
-import ffmpegStatic from "ffmpeg-static";
 import ffmpeg from "fluent-ffmpeg";
+import ffmpegStatic from "ffmpeg-static";
 import mime from "mime-types";
+import sanitizeFilename from "sanitize-filename";
 import stream from "stream";
 import ytdl from "ytdl-core";
 
@@ -63,7 +64,7 @@ export const downloadRequestHander: express.RequestHandler = (req, res, next) =>
     const { url } = req.params;
     const { name = "video", ext = "mp4" } = req.query;
 
-    setHeaders(res, `${name}.${ext}`.replace(/([^a-z0-9 ]+)/gi, ''));
+    setHeaders(res, sanitizeFilename(`${name}.${ext}`));
 
     downloadVideo(url)
       .pipe(ext === "mp4" ? new stream.PassThrough() : mp4ToMp3Conversor())
