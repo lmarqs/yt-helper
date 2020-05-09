@@ -63,9 +63,9 @@ function mp4ToMp3Conversor() {
     fluent_ffmpeg_1.default()
         .setFfmpegPath(ffmpeg_static_1.default)
         .input(input)
-        .audioCodec('libmp3lame')
-        .audioBitrate(192)
-        .audioChannels(2)
+        // .audioCodec('libmp3lame')
+        // .audioBitrate(192)
+        // .audioChannels(2)
         .format("mp3")
         .output(output)
         .run();

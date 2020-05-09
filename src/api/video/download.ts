@@ -49,9 +49,9 @@ function mp4ToMp3Conversor(): stream.Duplex {
   ffmpeg()
     .setFfmpegPath(ffmpegStatic)
     .input(input)
-    .audioCodec('libmp3lame')
-    .audioBitrate(192)
-    .audioChannels(2)
+    // .audioCodec('libmp3lame')
+    // .audioBitrate(192)
+    // .audioChannels(2)
     .format("mp3")
     .output(output)
     .run();
