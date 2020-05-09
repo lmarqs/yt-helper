@@ -20,7 +20,7 @@ export async function sync({ format, args: [url] }: Args): Promise<void> {
   const files = await readDir();
 
   for (const [index, video] of videos.entries()) {
-    const filename = `${(index + 1).toString().padStart(3, "0")} - ${video.title}`;
+    const filename = `${(index + 1).toString().padStart(3, "0")} - ${video.title}`.replace(/([^a-z0-9 ]+)/gi, '');
 
     if (files.includes(filename)) {
       files.splice(files.indexOf(filename), 1);
@@ -67,7 +67,6 @@ function mp4ToMp3Conversor(): stream.Duplex {
 
       this.on("pipe", (source: stream.Readable) => {
         source.unpipe(this);
-        // this.source = source.pipe(input);
       });
 
       this.pipe = (...args) => output.pipe(...args);

@@ -63,7 +63,7 @@ export const downloadRequestHander: express.RequestHandler = (req, res, next) =>
     const { url } = req.params;
     const { name = "video", ext = "mp4" } = req.query;
 
-    setHeaders(res, `${name}.${ext}`);
+    setHeaders(res, `${name}.${ext}`.replace(/([^a-z0-9 ]+)/gi, ''));
 
     downloadVideo(url)
       .pipe(ext === "mp4" ? new stream.PassThrough() : mp4ToMp3Conversor())

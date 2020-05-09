@@ -110,7 +110,7 @@ function sync(_a) {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    filename = (index + 1).toString().padStart(3, "0") + " - " + video.title;
+                                    filename = ((index + 1).toString().padStart(3, "0") + " - " + video.title).replace(/([^a-z0-9 ]+)/gi, '');
                                     if (files.includes(filename)) {
                                         files.splice(files.indexOf(filename), 1);
                                         return [2 /*return*/, "continue"];
@@ -195,7 +195,6 @@ function mp4ToMp3Conversor() {
             var _this = _super.call(this) || this;
             _this.on("pipe", function (source) {
                 source.unpipe(_this);
-                // this.source = source.pipe(input);
             });
             _this.pipe = function () {
                 var args = [];
@@ -215,6 +214,9 @@ function mp4ToMp3Conversor() {
     fluent_ffmpeg_1.default()
         .setFfmpegPath(ffmpeg_static_1.default)
         .input(input)
+        .audioCodec('libmp3lame')
+        .audioBitrate(192)
+        .audioChannels(2)
         .format("mp3")
         .output(output)
         .run();

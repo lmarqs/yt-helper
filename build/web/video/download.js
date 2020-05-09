@@ -62,6 +62,9 @@ function mp4ToMp3Conversor() {
     fluent_ffmpeg_1.default()
         .setFfmpegPath(ffmpeg_static_1.default)
         .input(input)
+        .audioCodec('libmp3lame')
+        .audioBitrate(192)
+        .audioChannels(2)
         .format("mp3")
         .output(output)
         .run();
@@ -71,7 +74,7 @@ exports.downloadRequestHander = function (req, res, next) {
     try {
         var url = req.params.url;
         var _a = req.query, _b = _a.name, name_1 = _b === void 0 ? "video" : _b, _c = _a.ext, ext = _c === void 0 ? "mp4" : _c;
-        setHeaders(res, name_1 + "." + ext);
+        setHeaders(res, (name_1 + "." + ext).replace(/([^a-z0-9 ]+)/gi, ''));
         downloadVideo(url)
             .pipe(ext === "mp4" ? new stream_1.default.PassThrough() : mp4ToMp3Conversor())
             .pipe(res);
