@@ -21,16 +21,18 @@ export async function sync({ format, args: [url] }: Args): Promise<void> {
   const files = await readDir();
 
   for (const [index, video] of videos.entries()) {
-    const filename = sanitizeFilename(`${(index + 1).toString().padStart(3, "0")} - ${video.title}`);
+    const filename = sanitizeFilename(`${(index + 1).toString().padStart(3, "0")} - ${video.title}.${format}`);
 
     if (files.includes(filename)) {
+      console.log(`[skip] ${filename}`);
       files.splice(files.indexOf(filename), 1);
       continue;
     }
 
+    console.log(`[downloading] ${filename}`);
     await new Promise((resolve, reject) => {
       downloadVideo(video.url)
-        .pipe(format === "mp3" ? new stream.PassThrough() : mp4ToMp3Conversor())
+        .pipe(format === "mp4" ? new stream.PassThrough() : mp4ToMp3Conversor())
         .pipe(fs.createWriteStream(filename))
         .on("error", reject)
         .on("finish", resolve);

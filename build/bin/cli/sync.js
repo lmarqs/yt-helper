@@ -84,17 +84,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/no-use-before-define */
-var ffmpeg_static_1 = __importDefault(require("ffmpeg-static"));
 var fluent_ffmpeg_1 = __importDefault(require("fluent-ffmpeg"));
+var ffmpeg_static_1 = __importDefault(require("ffmpeg-static"));
 var fs_1 = __importDefault(require("fs"));
 var path_1 = __importDefault(require("path"));
+var sanitize_filename_1 = __importDefault(require("sanitize-filename"));
 var stream_1 = __importDefault(require("stream"));
 var util_1 = __importDefault(require("util"));
 var ytdl_core_1 = __importDefault(require("ytdl-core"));
 var ytpl_1 = __importDefault(require("ytpl"));
 function sync(_a) {
     var format = _a.format, _b = __read(_a.args, 1), url = _b[0];
-    console.log(format);
     return __awaiter(this, void 0, void 0, function () {
         var videos, files, _loop_1, _c, _d, _e, index, video, e_1_1;
         var e_1, _f;
@@ -111,14 +111,16 @@ function sync(_a) {
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    filename = ((index + 1).toString().padStart(3, "0") + " - " + video.title).replace(/([^a-z0-9 ]+)/gi, '');
+                                    filename = sanitize_filename_1.default((index + 1).toString().padStart(3, "0") + " - " + video.title + "." + format);
                                     if (files.includes(filename)) {
+                                        console.log("[skip] " + filename);
                                         files.splice(files.indexOf(filename), 1);
                                         return [2 /*return*/, "continue"];
                                     }
+                                    console.log("[downloading] " + filename);
                                     return [4 /*yield*/, new Promise(function (resolve, reject) {
                                             downloadVideo(video.url)
-                                                .pipe(format === "mp3" ? new stream_1.default.PassThrough() : mp4ToMp3Conversor())
+                                                .pipe(format === "mp4" ? new stream_1.default.PassThrough() : mp4ToMp3Conversor())
                                                 .pipe(fs_1.default.createWriteStream(filename))
                                                 .on("error", reject)
                                                 .on("finish", resolve);

@@ -16,9 +16,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ffmpeg_static_1 = __importDefault(require("ffmpeg-static"));
 var fluent_ffmpeg_1 = __importDefault(require("fluent-ffmpeg"));
+var ffmpeg_static_1 = __importDefault(require("ffmpeg-static"));
 var mime_types_1 = __importDefault(require("mime-types"));
+var sanitize_filename_1 = __importDefault(require("sanitize-filename"));
 var stream_1 = __importDefault(require("stream"));
 var ytdl_core_1 = __importDefault(require("ytdl-core"));
 function setHeaders(res, filename) {
@@ -74,7 +75,7 @@ exports.downloadRequestHander = function (req, res, next) {
     try {
         var url = req.params.url;
         var _a = req.query, _b = _a.name, name_1 = _b === void 0 ? "video" : _b, _c = _a.ext, ext = _c === void 0 ? "mp4" : _c;
-        setHeaders(res, (name_1 + "." + ext).replace(/([^a-z0-9 ]+)/gi, ''));
+        setHeaders(res, sanitize_filename_1.default(name_1 + "." + ext));
         downloadVideo(url)
             .pipe(ext === "mp4" ? new stream_1.default.PassThrough() : mp4ToMp3Conversor())
             .pipe(res);
