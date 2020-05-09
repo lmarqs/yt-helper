@@ -1,6 +1,6 @@
 import express from "express";
 import ffmpegStatic from "ffmpeg-static";
-import fluentFfmpeg from "fluent-ffmpeg";
+import ffmpeg from "fluent-ffmpeg";
 import mime from "mime-types";
 import stream from "stream";
 import ytdl from "ytdl-core";
@@ -45,9 +45,12 @@ function mp4ToMp3Conversor(): stream.Duplex {
     source.pipe(input);
   });
 
-  fluentFfmpeg()
+  ffmpeg()
     .setFfmpegPath(ffmpegStatic)
     .input(input)
+    .audioCodec('libmp3lame')
+    .audioBitrate(192)
+    .audioChannels(2)
     .format("mp3")
     .output(output)
     .run();
