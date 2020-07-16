@@ -1046,16 +1046,6 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@derhuerst/http-basic@^8.2.0":
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/@derhuerst/http-basic/-/http-basic-8.2.0.tgz#d009a4a6820dea756061d21842e79d1dbf9a1e11"
-  integrity sha512-v1cqPUpFjU8DInW4YkC9caGKy8kUkqz0z10yCHawkxgpaJPId0F5xKi8fUY5rqC58F9Muz9T136jNReZQH9xIw==
-  dependencies:
-    caseless "^0.12.0"
-    concat-stream "^1.6.2"
-    http-response-object "^3.0.1"
-    parse-cache-control "^1.0.1"
-
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -4732,13 +4722,13 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-ffmpeg-static@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.0.tgz#b6a37002ee0e2d0e4cefa083ca042b9ad8bec302"
-  integrity sha512-LHQcdAb59eOEJfa5FcjiZ1cBTkm7+ZwndnAhINgAo/1fqKnZOchr2wXEY/45IBMkF0bmTO4rY9YPeztj9iEdNQ==
+ffmpeg-static@^4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.5.tgz#37c2cca00bc971951daa1bd243976fbb18a2d074"
+  integrity sha512-4JykaxRgU5z/GfL0YLkBetJyXgaQXh67etMJlJMMTTcoA33voU6y/KFMg/RUehBj3DGDIs9HYhf7tozwabibaQ==
   dependencies:
-    "@derhuerst/http-basic" "^8.2.0"
     env-paths "^2.2.0"
+    http-basic "github:derhuerst/http-basic#8.2.0"
     https-proxy-agent "^5.0.0"
     progress "^2.0.3"
 
@@ -5478,6 +5468,16 @@ htmlparser2@^3.3.0:
     entities "^1.1.1"
     inherits "^2.0.1"
     readable-stream "^3.1.1"
+
+"http-basic@github:derhuerst/http-basic#8.2.0":
+  version "8.2.0"
+  uid "0abee462a1e04a1cdada369b1a4d5b2d4698e3bc"
+  resolved "https://codeload.github.com/derhuerst/http-basic/tar.gz/0abee462a1e04a1cdada369b1a4d5b2d4698e3bc"
+  dependencies:
+    caseless "^0.12.0"
+    concat-stream "^1.6.2"
+    http-response-object "^3.0.1"
+    parse-cache-control "^1.0.1"
 
 http-deceiver@^1.2.7:
   version "1.2.7"
