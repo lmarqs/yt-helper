@@ -30,7 +30,7 @@
     "cross-spawn": "^7.0.3",
     "deploy-node-app": "^1.4.3",
     "eslint-plugin-jest": "^23.8.2",
-    "nodemon": "^1.19.1",
+    "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "react-app-rewire-workbox": "^2.0.1",
     "react-app-rewired": "^2.1.5",
