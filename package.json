@@ -31,7 +31,7 @@
     "deploy-node-app": "^2.0.15",
     "eslint-plugin-jest": "^23.20.0",
     "nodemon": "^2.0.4",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "react-app-rewire-workbox": "^2.0.1",
     "react-app-rewired": "^2.1.5",
     "react-scripts": "^3.4.3",
