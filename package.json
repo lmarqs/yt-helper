@@ -28,7 +28,7 @@
     "@types/react-dom": "^16.9.8",
     "concurrently": "^5.3.0",
     "cross-spawn": "^7.0.3",
-    "deploy-node-app": "^2.0.15",
+    "deploy-node-app": "^2.1.0",
     "eslint-plugin-jest": "^23.20.0",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1",
