@@ -3277,12 +3277,7 @@ commander@^4.1.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
-commander@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
-  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
-
-commander@^6.1.0:
+commander@^6.0.0, commander@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-6.1.0.tgz#f8d722b78103141006b66f4c7ba1e97315ba75bc"
   integrity sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==
@@ -3990,14 +3985,14 @@ depd@~1.1.2:
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
-deploy-node-app@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/deploy-node-app/-/deploy-node-app-2.1.0.tgz#ae6585f4e23d3dc31ba219ae92dc6f57f2380a81"
-  integrity sha512-PvXN/kHELnCLiZqr4dgzGaFKWWTnWvM70eyerN2hJgqjQjbJHoHKEct3qZ4qnqHfczug8yyDQWUsSSOWClCnfw==
+deploy-node-app@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/deploy-node-app/-/deploy-node-app-2.2.1.tgz#7f3d4b6bff2e0d30ff21c3854e5fd6e84d9bf092"
+  integrity sha512-8oNU9XkLiAY9k5IlhBybn/d2Qk3m6oChxS98pzicCsjB88FAiUpFnQ01YxvP2UY0ZwBe9xI42XaG9HGha/RVwg==
   dependencies:
     ansi-styles "^4.1.0"
     chalk "^4.1.0"
-    commander "^5.0.0"
+    commander "^6.0.0"
     diff "^4.0.1"
     get-kubesail-config "^1.0.4"
     got "^11.3.0"
