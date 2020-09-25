@@ -13,7 +13,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "sanitize-filename": "^1.6.3",
-    "ytdl-core": "^3.2.2",
+    "ytdl-core": "^3.3.0",
     "ytpl": "^1.0.1"
   },
   "devDependencies": {
