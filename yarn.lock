@@ -1510,10 +1510,10 @@
   resolved "https://registry.yarnpkg.com/@types/ffmpeg-static/-/ffmpeg-static-3.0.0.tgz#723c2349da9e095cfa0ee6e6c1d5d4c87bb76933"
   integrity sha512-JTwV8fFQYUgp8VLUKLd8zHfhFOoTTszMlofnWINAZYWSd/iR2ZZHJsWanUhBG4+c8QPfWE8P7t3nAjSxTNjevQ==
 
-"@types/fluent-ffmpeg@^2.1.15":
-  version "2.1.15"
-  resolved "https://registry.yarnpkg.com/@types/fluent-ffmpeg/-/fluent-ffmpeg-2.1.15.tgz#af49499bc7ff7a22c56734dec16065e0e1bcc69c"
-  integrity sha512-bz52DnmQHWFJpV+O0ijpqtWpTfomtQSU5gDKG7FABDckLhGJXyqc+8hYvfjQ4FMOqjZLFHX1LCqs4NeZOyorLQ==
+"@types/fluent-ffmpeg@^2.1.16":
+  version "2.1.16"
+  resolved "https://registry.yarnpkg.com/@types/fluent-ffmpeg/-/fluent-ffmpeg-2.1.16.tgz#63949b0cb6bc88c9157a579cdd80858a269f3a3a"
+  integrity sha512-1FTstm6xY/2WsJVt6ARV7CiJjNCQDlR/nfw6xuYk5ITbVjk7sw89Biyqm2DGW4c3aZ3vBx+5irZvsql4eybpoQ==
   dependencies:
     "@types/node" "*"
 
