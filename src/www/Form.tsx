@@ -76,11 +76,7 @@ export class Form extends Component<Props, State> {
 }
 
 
-interface InnerFormProps {
-  onSubmit: OnSubmit,
-  isSubmitting: boolean,
-}
-
 export function useOnSubmitCallback(callback: OnSubmit, dependencies: DependencyList = []): OnSubmit {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useCallback<OnSubmit>(callback, dependencies);
 }

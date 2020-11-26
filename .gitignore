@@ -14,6 +14,7 @@
 *.local
 *.log
 *.log.gz
+.eslintcache
 
 # used by deploy-node-app
 tmp/

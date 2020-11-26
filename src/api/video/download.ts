@@ -41,7 +41,7 @@ function mp4ToMp3Conversor(): stream.Duplex {
     }
   }();
 
-  combiner.on("pipe", (source) => {
+  combiner.on("pipe", (source: stream.Readable) => {
     source.unpipe(combiner);
     source.pipe(input);
   });
@@ -49,9 +49,6 @@ function mp4ToMp3Conversor(): stream.Duplex {
   ffmpeg()
     .setFfmpegPath(ffmpegStatic)
     .input(input)
-    // .audioCodec('libmp3lame')
-    // .audioBitrate(192)
-    // .audioChannels(2)
     .format("mp3")
     .output(output)
     .run();
@@ -64,7 +61,7 @@ export const downloadRequestHander: express.RequestHandler = (req, res, next) =>
     const { url } = req.params;
     const { name = "video", ext = "mp4" } = req.query;
 
-    setHeaders(res, sanitizeFilename(`${name}.${ext}`));
+    setHeaders(res, sanitizeFilename(`${name.toString()}.${ext.toString()}`));
 
     downloadVideo(url)
       .pipe(ext === "mp4" ? new stream.PassThrough() : mp4ToMp3Conversor())

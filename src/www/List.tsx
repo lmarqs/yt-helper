@@ -6,10 +6,11 @@ interface Props {
 }
 
 export const List: FunctionComponent<Props> = ({ videos }) => {
+  console.log(videos)
   return (
     <ul className="list-group">
       {videos.map(video => (
-        <ListItem key={video.video_id} video={video} />
+        <ListItem key={video.videoDetails.videoId} video={video} />
       ))}
     </ul>
   );
@@ -20,7 +21,7 @@ const ListItem: FunctionComponent<{ video: Video }> = ({ video }) => {
     <li className="list-group-item">
       <div className="row">
         <div className="col-10">
-          {video.title}
+          {video.videoDetails.title}
         </div>
         <div className="col-2">
           <Actions video={video} />
@@ -56,12 +57,12 @@ const Actions: FunctionComponent<{ video: Video }> = ({ video }) => {
         </span>
       </button>
       <div className={`dropdown-menu${isFocused ? ' show' : ''}`}>
-        <a className="dropdown-item" href={video.video_url} rel="noopener noreferrer" target="_blank">
+        <a className="dropdown-item" href={video.videoDetails.video_url} rel="noopener noreferrer" target="_blank">
           Assistir
         </a>
         <a 
           className="dropdown-item"
-          href={`/api/video/${encodeURIComponent(video.video_url)}/download?name=${encodeURIComponent(video.title)}&ext=mp4`}
+          href={`/api/video/${encodeURIComponent(video.videoDetails.video_url)}/download?name=${encodeURIComponent(video.videoDetails.title)}&ext=mp4`}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -69,7 +70,7 @@ const Actions: FunctionComponent<{ video: Video }> = ({ video }) => {
         </a>
         <a 
           className="dropdown-item"
-          href={`/api/video/${encodeURIComponent(video.video_url)}/download?name=${encodeURIComponent(video.title)}&ext=mp3`}
+          href={`/api/video/${encodeURIComponent(video.videoDetails.video_url)}/download?name=${encodeURIComponent(video.videoDetails.title)}&ext=mp3`}
           rel="noopener noreferrer"
           target="_blank"
         >

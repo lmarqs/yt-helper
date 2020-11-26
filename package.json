@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@metamodules/postgres": "^1.2.1",
     "commander": "^6.2.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
@@ -23,7 +22,6 @@
     "@types/jest": "^26.0.15",
     "@types/mime-types": "^2.1.0",
     "@types/node": "^14.14.10",
-    "@types/pg": "^7.14.7",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "concurrently": "^5.3.0",
@@ -50,8 +48,7 @@
     "deploy": "git push heroku master -f",
     "lint": "eslint . --ext tsx,ts,js",
     "test": "react-app-rewired test",
-    "eject-www": "react-app-rewired eject",
-    "psql": "export $(cat .env | xargs) && PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${POSTGRES_SERVICE_HOST} -p ${POSTGRES_SERVICE_PORT} -U ${POSTGRES_USER} ${POSTGRES_DB}"
+    "eject-www": "react-app-rewired eject"
   },
   "bin": {
     "yth": "bin/cli"
