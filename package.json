@@ -22,7 +22,7 @@
     "@types/jest": "^26.0.20",
     "@types/mime-types": "^2.1.0",
     "@types/node": "^14.14.22",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "concurrently": "^5.3.0",
     "cross-spawn": "^7.0.3",
