@@ -27,7 +27,7 @@
     "concurrently": "^6.0.0",
     "cross-spawn": "^7.0.3",
     "deploy-node-app": "^2.2.1",
-    "eslint-plugin-jest": "^24.2.0",
+    "eslint-plugin-jest": "^24.2.1",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "react-app-rewire-workbox": "^2.0.1",
